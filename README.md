@@ -1,6 +1,6 @@
-# Travel Log Github Project Creator
+# Github Project Creator
 
-A tool to create all the labels, issues and project cards for the Travel Log project.
+A tool to create all the labels, issues and project cards for the a project.
 
 ## Setup
 
