@@ -77,7 +77,7 @@ for (const label of labels) {
 
 type MDStoryWithEpic = MDStory & {
   title: string;
-  priority: number;
+  priority?: number;
   epic: {
     labelId: string;
     issueId: string;
@@ -118,13 +118,13 @@ const storiesWithEpic: MDStoryWithEpic[] = storyFiles.map((file) => {
   const [epicNumber, storyNumber] = file.split("-").slice(0, 2);
 
   const storyId = `${epicNumber}-${storyNumber}`;
-  const priorityIndex = priorityOrder.indexOf(storyId);
+  //const priorityIndex = priorityOrder.indexOf(storyId);
 
-  if (priorityIndex === -1) {
-    throw new Error(`Story ${file} not found in priority order`);
-  }
+  // if (priorityIndex === -1) {
+  //   throw new Error(`Story ${file} not found in priority order`);
+  // }
 
-  const priority = priorityIndex + 1;
+  // const priority = priorityIndex + 1;
 
   const title = frontmatter.role ? `As a ${frontmatter.role}, I want to ${frontmatter.action}` : frontmatter.title;
 
@@ -136,7 +136,7 @@ const storiesWithEpic: MDStoryWithEpic[] = storyFiles.map((file) => {
     title,
     frontmatter,
     description,
-    priority,
+    //priority,
     epic: {
       labelId: labelsByName.get(frontmatter.label as string) as string,
       issueId: epics[epicNumber].issueId,
@@ -146,7 +146,7 @@ const storiesWithEpic: MDStoryWithEpic[] = storyFiles.map((file) => {
   return story;
 });
 
-storiesWithEpic.sort((a, b) => a.priority - b.priority);
+//storiesWithEpic.sort((a, b) => a.priority - b.priority);
 
 for (const story of storiesWithEpic) {
   let body = story.frontmatter.role ? `As a ${story.frontmatter.role}, I want to ${story.frontmatter.action} so that ${story.frontmatter.benefit}.\n\n` : "";
